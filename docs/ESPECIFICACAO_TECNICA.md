@@ -2,7 +2,7 @@
 
 **Slogan:** "Você sabe tanto que é um Spoiler ambulante."
 
-**Versão:** 1.0 
+**Versão:** 1.1 
 
 **Status:** Desenvolvimento
 
@@ -58,31 +58,35 @@ Abaixo, detalhamos as escolhas arquiteturais e o "porquê" de cada decisão.
 
 * **RF04 \- Recuperação de Senha:** Implementação de fluxo de "Esqueci minha senha" (envio de link/token via e-mail).
 
+* **RF05 \- Sessão sem Cadastro:** Permitir que o jogo possa ser jogado sem cadastrar uma conta.
+
 **Execução do Jogo:**
 
-* **RF05 \- Configuração da Partida:** O usuário seleciona a Categoria (Filmes ou Séries) e o Nível de Dificuldade (Fácil, Médio, Difícil).
+* **RF06 \- Configuração da Partida:** O usuário seleciona a Categoria (Filmes ou Séries) e o Nível de Dificuldade (Fácil, Médio, Difícil).
 
-* **RF06 \- Mecânica de Quiz:** O sistema apresenta 10 perguntas sequenciais. Cada pergunta possui um enunciado e 4 alternativas (A, B, C, D).
+* **RF07 \- Mecânica de Quiz:** O sistema apresenta 10 perguntas sequenciais. Cada pergunta possui um enunciado e 4 alternativas (A, B, C, D).
 
-* **RF07 \- Temporizador Regressivo:** Cada pergunta possui um tempo limite baseado na dificuldade. Se o tempo esgotar, conta-se como erro.
+* **RF08 \- Temporizador Regressivo:** Cada pergunta possui um tempo limite baseado na dificuldade. Se o tempo esgotar, conta-se como erro.
 
-* **RF08 \- Feedback Audiovisual:** O sistema deve emitir sons e alteração de cores imediatas ao selecionar uma resposta (Verde/Acerto ou Vermelho/Erro).
+* **RF09 \- Feedback Audiovisual:** O sistema deve emitir sons e alteração de cores imediatas ao selecionar uma resposta (Verde/Acerto ou Vermelho/Erro).
 
-* **RF09 \- Tutorial/Regras:** Tela informativa explicando como a pontuação é calculada e o funcionamento das ajudas.
+* **RF10 \- Tutorial/Regras:** Tela informativa explicando como a pontuação é calculada e o funcionamento das ajudas.
 
 **Sistema de Ajudas:**
 
-* **RF10 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
+* **RF11 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
 
-* **RF11 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
+* **RF12 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
 
-* **RF12 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
+* **RF13 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
 
 **Social e Dados:**
 
-* **RF13 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
+* **RF14 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
 
-* **RF14 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
+* **RF15 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
+
+* **RF16 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
 
 **4\. Regras de Negócio (RN)**
 
