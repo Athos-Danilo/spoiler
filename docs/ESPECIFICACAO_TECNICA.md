@@ -2,7 +2,7 @@
 
 **Slogan:** "Você sabe tanto que é um Spoiler ambulante."
 
-**Versão:** 1.1 
+**Versão:** 1.2 
 
 **Status:** Desenvolvimento
 
@@ -87,6 +87,8 @@ Abaixo, detalhamos as escolhas arquiteturais e o "porquê" de cada decisão.
 * **RF15 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
 
 * **RF16 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
+
+* **RF15 \- Compartinhar:** O usuário pode compartilhar sua pontuação e quiz favorito.
 
 **4\. Regras de Negócio (RN)**
 
