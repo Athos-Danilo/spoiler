@@ -3,40 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spoiler | Entrar</title>
-    <link rel="stylesheet" href="/frontend/css/entrar.css">
+    <title>Entrar | Spoiler</title>
+    <link rel="stylesheet" href="../css/entrar.css">
 </head>
 <body>
     <main class="container">
         <div class="card">
             <div class="card-esquerdo">
-                <img src="" alt="">
+                <img src="../img/wallpaper-deadpool.jpg" id="deadpool" alt="Wallpaper Deadpool" class="slide ativo">
+                <img src="../img/wallpaper-got.jpg" id="got" alt="Wallpaper Game of Thrones" class="slide">
+                <img src="../img/wallpaper-duna.jpg" id="duna" alt="Wallpaper Duna" class="slide">
             </div>
 
             <div class="card-direito">
-                <h1>Bem-vindo de volta!</h1>
-                <h2>Faça o login para guardar seus resultados.</h2>
-
-                <div class="inputs">
-                    <label for="nickname">Nome de Usuário</label>
-                    <input type="text" placeholder="Ex: Dandinha"></input>
+                <div class="logo">
+                    <h1>Spoiler</h1>
+                    <h3>Quiz de Filmes & Séries</h3>
                 </div>
 
-                <div class="inputs">
-                    <label for="senha">Senha</label>
-                    <input type="text" placeholder="Sua Senha"></input>
-                </div>
+                <h2>Bem-vindo de volta!</h2>
+
+                <form action="#" class="login-formulario" method="post">
+                        <div class="inputs">
+                            <img src="../img/icone-usuario.png" class="icone-input" alt="Ícone de Usuário">
+                            <input type="text" id="nomeUsuario" placeholder="Nome do Usuário">
+                        </div>
+
+                        <div class="inputs">
+                            <img src="../img/icone-cadeado.png" class="icone-input" alt="Ícone de Cadeado">
+                            <input type="password" id="senha" placeholder="Senha">
+                            <img src="../img/icone-olho-fechado.png" class="icone-ver-senha" alt="Mostrar Senha">
+                        </div>
+
+                        <button type="submit">Entrar</button>
+                </form>
                 
-                <input type="checkbox">Lembre-se de mim</input>
+
                 <a href="#">Esqueci a Senha</a>
-                <button>Entrar</button>
-
+                
                 <div class="criar-conta">
-                    <h3>Não tem um Conta?</h3>
-                    <button>Criar Conta</button>
+                    <p>Novo por aqui? <a href="#">Criar Conta</a></p>
                 </div>
-
-                <p>Ao continuar, você concorda com nossos Termos de Serviço e Política de Privacidade</p>
 
             </div>
 
@@ -44,6 +51,6 @@
 
     </main>
 
-    <script src="/frontend/js/entrar.js"></script>
+    <script src="../js/entrar.js"></script>
 </body>
 </html>
