@@ -57,7 +57,7 @@ body::before {
 /*---------- Card ----------*/
 .card {
     width: 90%;
-    max-height: 400px;
+    max-height: 700px;
     background-color: var(--cor-azul-2);
     border-radius: 20px;
     border: inset 4px var(--cor-azul-1);
@@ -79,8 +79,155 @@ body::before {
     align-items: center;
 }
 
+/*---------- Logo ----------*/
+.logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
 
+.logo h1 {
+    font-family: var(--fonte-principal);
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--cor-branco);
+    line-height: 1.1;
+}
 
+.logo h3 {
+    font-family: var(--fonte-principal);
+    font-size: 1.1rem;
+    color: var(--cor-branco);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/*---------- Boas-vindas ----------*/
+h2 {
+    font-family: var(--fonte-secundaria);
+    color: var(--cor-branco);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/*---------- Formulário ----------*/
+.login-formulario {
+    width: 100%;
+}
+
+.inputs {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.inputs input {
+    width: 100%;
+    background-color: var(--cor-azul-4);
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    padding-left: 45px;
+    color: var(--cor-branco);
+    font-size: 1rem;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.inputs input:focus {
+    color: var(--cor-cinza);
+}
+
+.inputs input::placeholder {
+    color: var(--cor-cinza-mais-claro);
+}
+
+.icone-input {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    pointer-events: none;
+}
+
+.icone-ver-senha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    cursor: pointer;
+}
+
+/*--- Botão ---*/
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: var(--fonte-principal);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color:#4a90e2;
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(52, 124, 212, 0.4);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/*---------- Links ----------*/
+a {
+    text-decoration: none;
+    color: var(--cor-cinza-claro);
+    font-size: 0.9rem;
+    margin-top: 20px;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--cor-branco);
+    text-decoration: underline;
+}
+
+.criar-conta {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cor-azul-3);
+    text-align: center;
+    width: 100%;
+}
+
+.criar-conta p {
+    color: var(--cor-cinza);
+    font-size: 0.9rem;
+}
+
+.criar-conta a {
+    color: var(--cor-azul);
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.criar-conta a:hover {
+    color: var(--cor-branco);
+}
+
+/*------------------------------ Telas Médias (Tablets e Notebooks Pequenos) ------------------------------*/
 
 .slide.ativa {
     height: 400px;
