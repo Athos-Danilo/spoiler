@@ -39,20 +39,55 @@ iconeOlho.addEventListener('click', function() {
 });
 
 // ---> Login.
-formulario.addEventListener('submit', function(event) {
+formulario.addEventListener('submit', async function(event) {
+    // 1. Impede que a página recarregue
     event.preventDefault();
 
-    const usuarioDigitado = nomeUsuario.value;
-    const senhaDigitada = senha.value;
+    // 2. Prepara os dados para enviar
+    // NOTA: O backend espera "email", mas seu input chama "nomeUsuario".
+    // Vamos assumir que o usuário digita o E-MAIL no campo de login.
+    const dadosLogin = {
+        email: nomeUsuario.value, 
+        senha: senha.value
+    };
 
-    if (usuarioDigitado === "" || senhaDigitada === "") {
-        alert("Preencha todos os campos!");
-        return;
+    try {
+        // 3. A Requisição (O Carteiro)
+        const response = await fetch('http://localhost:3000/auth/login', {
+            method: 'POST', // Estamos enviando dados
+            headers: {
+                'Content-Type': 'application/json' // Avisa que é JSON
+            },
+            body: JSON.stringify(dadosLogin) // Transforma o objeto JS em texto JSON
+        });
+
+        // 4. Recebe a resposta do Backend
+        const data = await response.json();
+
+        // 5. Verifica se deu certo
+        if (response.ok) {
+            // SUCESSO! 
+            
+            // Salva o Token e o Usuário no navegador (memória local)
+            localStorage.setItem('spoilerToken', data.token);
+            localStorage.setItem('spoilerUser', JSON.stringify(data.user));
+
+            console.log("Login feito! Token salvo:", data.token);
+            
+            // Feedback visual e Redirecionamento
+            alert("Login realizado com sucesso! Bem-vindo(a), " + data.user.nickname);
+            
+            // Redireciona para a página do jogo (vamos criar ela a seguir)
+            window.location.href = 'game.html'; 
+
+        } else {
+            // ERRO (Senha errada ou usuário não existe) 
+            alert("Erro: " + data.msg); // Mostra a mensagem que veio do Backend
+        }
+
+    } catch (error) {
+        // Erro de conexão (ex: Servidor desligado)
+        console.error("Erro na requisição:", error);
+        alert("Erro ao conectar com o servidor. Verifique se o Backend está rodando!");
     }
-
-    console.log("Tentativa de Login");
-    console.log("Usuário:", usuarioDigitado);
-    console.log("Senha:", senhaDigitada);
-
-    alert("Login realizado com sucesso! Bem-vindo(a), " + usuarioDigitado + "!");
 });
