@@ -6,8 +6,8 @@ const usuario = new Schema(
   {
     nickname: {
       type: String,
-      required: true, // É obrigatório
-      unique: true,   // Não podem existir dois iguais
+      required: true, 
+      unique: true,   
     },
     email: {
       type: String,
@@ -16,13 +16,12 @@ const usuario = new Schema(
     },
     senha: {
       type: String,
-      required: true, // Aqui vai o Hash (senha criptografada)
+      required: true, 
     },
     avatar: {
       type: String,
-      default: "default-avatar.png", // Se o usuário não escolher, vai esse
+      default: "default-avatar.png", 
     },
-    // Estatísticas do Jogador (Ranking)
     estatisticas: {
       total_pontos: {
         type: Number,
@@ -33,17 +32,16 @@ const usuario = new Schema(
         default: 0,
       },
     },
-    // Histórico para evitar repetição de perguntas (RN07)
     historico: {
       perguntas_respondidas: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Questoes", // Referência para quando criarmos a tabela de Perguntas
+          ref: "Questoes", 
         },
       ],
     },
   },
-  { timestamps: true } // Cria automaticamente: createdAt e updatedAt
+  { timestamps: true } 
 );
 
 const User = mongoose.model("User", usuario);

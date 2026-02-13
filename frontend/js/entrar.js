@@ -47,7 +47,7 @@ formulario.addEventListener('submit', async function(event) {
     // NOTA: O backend espera "email", mas seu input chama "nomeUsuario".
     // Vamos assumir que o usuário digita o E-MAIL no campo de login.
     const dadosLogin = {
-        email: nomeUsuario.value, 
+        nickname: nomeUsuario.value, 
         senha: senha.value
     };
 
