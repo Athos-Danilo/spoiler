@@ -75,19 +75,19 @@ formulario.addEventListener('submit', async function(event) {
             console.log("Login feito! Token salvo:", data.token);
             
             // Feedback visual e Redirecionamento
-            alert("Login realizado com sucesso! Bem-vindo(a), " + data.user.nickname);
+            mostrarToast("Login realizado com sucesso! Bem-vindo(a), " + data.user.nickname);
             
             // Redireciona para a página do jogo (vamos criar ela a seguir)
             window.location.href = 'game.html'; 
 
         } else {
             // ERRO (Senha errada ou usuário não existe) 
-            alert("Erro: " + data.msg); // Mostra a mensagem que veio do Backend
+            mostrarToast("Erro: " + data.msg); // Mostra a mensagem que veio do Backend
         }
 
     } catch (error) {
         // Erro de conexão (ex: Servidor desligado)
         console.error("Erro na requisição:", error);
-        alert("Erro ao conectar com o servidor. Verifique se o Backend está rodando!");
+        mostrarToast("Erro ao conectar com o servidor. Verifique se o Backend está rodando!");
     }
 });

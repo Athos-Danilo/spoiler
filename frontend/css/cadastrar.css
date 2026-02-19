@@ -371,6 +371,37 @@ button:active {
     transform: scale(0.97);
 }
 
+/*------------------------------ Animação de Transição ------------------------------*/
+.deslizar-sair-esquerda {
+    animation: sairEsquerda 0.5s forwards ease-in-out; 
+}
+
+.deslizar-entrar-direita {
+    animation: entrarDireita 0.5s forwards ease-in-out;
+}
+
+@keyframes sairEsquerda {
+    0% { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateX(-100px); 
+        opacity: 0; 
+    }
+}
+
+@keyframes entrarDireita {
+    0% { 
+        transform: translateX(100px); 
+        opacity: 0; 
+    }
+    100% { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+}
+
 /*------------------------------ Telas Médias (Tablets e Notebooks Pequenos) ------------------------------*/
 @media (min-width: 900px) {
     /*---------- Imagem de Fundo ----------*/
@@ -540,8 +571,44 @@ button:active {
         transform: scale(1.02);
         box-shadow: 0 5px 15px rgba(52, 124, 212, 0.4);
     }
-}
 
+
+/*======================================================
+      ANIMAÇÕES EXCLUSIVAS PARA TABLET/DESKTOP (FADE)
+    ======================================================*/
+    /* Aqui nós "sobrescrevemos" o deslize do celular por um Fade Suave */
+    .deslizar-sair-esquerda {
+        animation: fadeOutDesktop 0.5s forwards ease-in-out;
+    }
+
+    .deslizar-entrar-direita {
+        animation: fadeInDesktop 0.5s forwards ease-in-out;
+    }
+
+    @keyframes fadeOutDesktop {
+        0% { 
+            opacity: 1; 
+            /* Se for a tela 1 (container), mantemos ela no centro */
+            transform: translate(-50%, -50%) scale(1); 
+        }
+        100% { 
+            opacity: 0; 
+            transform: translate(-50%, -50%) scale(0.95); /* Dá uma leve encolhida enquanto some */
+        }
+    }
+
+    @keyframes fadeInDesktop {
+        0% { 
+            opacity: 0; 
+            transform: scale(0.95);
+        }
+        100% { 
+            opacity: 1; 
+            transform: scale(1);
+        }
+    }
+
+}
 /*------------------------------ Telas Grandes ------------------------------*/
 @media (min-width: 1400px) {
     /*---------- Base ----------*/

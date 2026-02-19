@@ -63,18 +63,34 @@ mostrarSenha(iconeOlhoConfirmar, confirmarSenha);
 
 // ======> Transição das Telas.
 btnContinuar.addEventListener('click', () => {
+    // 1. Validações
     if (!nickname.value || !email.value || !senha.value || !confirmarSenha.value) {
-        alert('Por favor, preencha todos os campos.');
+        mostrarToast('Por favor, preencha todos os campos.', 'aviso');
         return;
     }
 
     if (senha.value !== confirmarSenha.value) {
-        alert('As senhas não coincidem.');
+        mostrarToast('As senhas não coincidem.', 'erro');
         return;
     }
 
-    telaPasso1.style.display = 'none';
-    telaPasso2.style.display = 'flex';
+    // 2. Toca um som neutro de "avanço de tela" se quiser! (Opcional)
+    // tocarSom('aviso'); 
+
+    // 3. Aplica a classe que faz a Tela 1 deslizar para a esquerda e sumir
+    telaPasso1.classList.add('deslizar-sair-esquerda');
+
+    // 4. O Truque: Esperamos 500ms (meio segundo) que é o tempo exato da animação do CSS terminar
+    setTimeout(() => {
+        // Agora sim a gente esconde o esqueleto da Tela 1 de vez
+        telaPasso1.style.display = 'none';
+        
+        // E mostramos a Tela 2
+        telaPasso2.style.display = 'flex';
+        
+        // Só que ela entra engatando a animação de vir da direita!
+        telaPasso2.classList.add('deslizar-entrar-direita');
+    }, 500); 
 });
 
 
@@ -122,17 +138,24 @@ formCadastro.addEventListener('submit', async (evento) => {
         const data = await resposta.json(); 
 
         if (resposta.status === 201) {
-            alert("Conta criada com sucesso! Bem-vindo(a) ao Spoiler");
-            window.location.href = 'entrar.html';
+            mostrarToast("Conta criada com sucesso! Bem-vindo(a) ao Spoiler");
+            
+            setTimeout(() => {
+                window.location.href = 'entrar.html';
+            }, 2000);
+
         } else {
-            alert("Erro: " + data.msg);
+            mostrarToast("Erro: " + data.msg, 'erro');
             btnFinalizar.innerText = 'Pronto Para Jogar';
             btnFinalizar.disabled = false;
         }
     } catch (error) {
         console.error("Erro na requisição:", error);
-        alert("Erro ao conectar com o servidor. Verifique se o Backend está rodando!");
+        mostrarToast("Erro ao conectar com o servidor. Verifique se o Backend está rodando!");
         
+        const btnFinalizar = document.getElementById('btnFinalizar');
+        btnFinalizar.innerText = 'Pronto Para Jogar';
+        btnFinalizar.disabled = false;
     }
 });
 
