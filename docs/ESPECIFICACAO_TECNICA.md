@@ -72,23 +72,29 @@ Abaixo, detalhamos as escolhas arquiteturais e o "porquê" de cada decisão.
 
 * **RF10 \- Tutorial/Regras:** Tela informativa explicando como a pontuação é calculada e o funcionamento das ajudas.
 
+* **RF11 \- Estatísticas de Escolha dos Jogadores:** O sistema deve registrar cada alternativa selecionada pelos usuários em uma pergunta e, se a resposta do jogador atual for incorreta, o sistema deve exibir a porcentagem de vezes que cada alternativa foi escolhida pela comunidade.
+
+* **RF12 \- Sistema de Curiosidades:** O sistema deve suportar o envio de uma curiosidade sobre o tema da pergunta após ela ser respondida. O frontend deve validar o conteúdo e exibir a curiosidade apenas se houver um texto personalizado cadastrado, ocultando a interface caso receba o valor padrão do sistema.
+
 **Sistema de Ajudas:**
 
-* **RF11 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
+* **RF13 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
 
-* **RF12 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
+* **RF14 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
 
-* **RF13 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
+* **RF15 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
 
 **Social e Dados:**
 
-* **RF14 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
+* **RF16 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
 
-* **RF15 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
+* **RF17 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
 
-* **RF16 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
+* **RF18 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
 
-* **RF15 \- Compartinhar:** O usuário pode compartilhar sua pontuação e quiz favorito.
+* **RF19 \- Compartinhar:** O usuário pode compartilhar sua pontuação e quiz favorito.
+
+* **RF20 \- Classificação Temática:** O sistema deve permitir a classificação das perguntas não apenas por categoria geral (ex: Filmes ou Séries), mas também por temas ou franquias específicas (ex: Marvel, Harry Potter, Friends), permitindo futura filtragem e criação de salas temáticas.
 
 **4\. Regras de Negócio (RN)**
 
