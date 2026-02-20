@@ -6,6 +6,8 @@
 
 **Status:** Desenvolvimento
 
+**Data de Atualização:** 20/02/2026
+
 **1\. Visão Geral do Produto**
 
 O **Spoiler** é um Web App de Quiz estilo "Arcade" focado no universo de Filmes e Séries. Diferente de quizes estáticos, o projeto foca na gamificação, pressão de tempo e gestão de recursos (pontos), oferecendo uma experiência competitiva e dinâmica. O sistema não apenas testa o conhecimento, mas a estratégia do usuário. Através de um sistema de "Ajudas Pagas", o jogador deve decidir entre arriscar uma resposta rápida para maximizar pontos ou gastar seu saldo para garantir o acerto.
@@ -76,25 +78,43 @@ Abaixo, detalhamos as escolhas arquiteturais e o "porquê" de cada decisão.
 
 * **RF12 \- Sistema de Curiosidades:** O sistema deve suportar o envio de uma curiosidade sobre o tema da pergunta após ela ser respondida. O frontend deve validar o conteúdo e exibir a curiosidade apenas se houver um texto personalizado cadastrado, ocultando a interface caso receba o valor padrão do sistema.
 
+* **RF13 \- Sistema de Report (Denúncia de Erro):** O sistema deve permitir que o jogador reporte uma pergunta imediatamente após respondê-la (sinalizando erro de gabarito, digitação ou ofensa). Esse report será encaminhado silenciosamente para a fila de revisão do painel administrativo.
+
 **Sistema de Ajudas:**
 
-* **RF13 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
+* **RF14 \- Menu de Ajudas:** Durante a partida, o usuário terá acesso a 3 botões de ajuda.
 
-* **RF14 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
+* **RF15 \- Validação de Compra:** O sistema deve bloquear (desabilitar) o botão de ajuda caso o usuário não tenha saldo de pontos suficiente na partida atual.
 
-* **RF15 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
+* **RF16 \- Simulação de "Universitários":** O sistema deve gerar gráficos de votação fictícios, onde a precisão da "plateia virtual" varia conforme a dificuldade da pergunta.
 
 **Social e Dados:**
 
-* **RF16 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
+* **RF17 \- Ranking Global:** Exibição de um Leaderboard com os **Top 50** melhores pontuadores (com paginação ou scroll infinito).
 
-* **RF17 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
+* **RF18 \- Histórico de Partidas:** O usuário pode visualizar um log de suas últimas partidas e pontuações.
 
-* **RF18 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
+* **RF19 \- Aviso:** O sistema deve exibir uma tela de aviso para usuários que não estiverem logados, informando que o progresso do jogo não será salvo caso não realizem o cadastro.
 
-* **RF19 \- Compartinhar:** O usuário pode compartilhar sua pontuação e quiz favorito.
+* **RF20 \- Compartinhar:** O usuário pode compartilhar sua pontuação e quiz favorito.
 
-* **RF20 \- Classificação Temática:** O sistema deve permitir a classificação das perguntas não apenas por categoria geral (ex: Filmes ou Séries), mas também por temas ou franquias específicas (ex: Marvel, Harry Potter, Friends), permitindo futura filtragem e criação de salas temáticas.
+* **RF21 \- Classificação Temática:** O sistema deve permitir a classificação das perguntas não apenas por categoria geral (ex: Filmes ou Séries), mas também por temas ou franquias específicas (ex: Marvel, Harry Potter, Friends), permitindo futura filtragem e criação de salas temáticas.
+
+* **RF22 \- Sistema de Notificações:** O sistema deve possuir uma central de notificações ou alertas para o jogador, onde ele receberá mensagens de retorno da administração (ex: um aviso de resolução e agradecimento por um erro reportado validado pela equipe).
+
+**Módulo Administrativo:**
+
+* **RF23 \- Interface Otimizada para Desktop:** A interface do painel administrativo deve ser desenvolvida com abordagem Desktop First, garantindo melhor visualização de tabelas de dados e gráficos de estatísticas, não sendo obrigatória a responsividade para dispositivos móveis.
+
+* **RF24 \- Controle de Acesso:** O sistema deve diferenciar contas de "Jogadores" e contas de "Administradores". O acesso ao painel e às rotas de criação/edição de perguntas deve ser bloqueado para usuários comuns através de validação de token (Middleware).
+
+* **RF25 \- Dashboard de Estatísticas Globais:** O painel deve exibir um resumo analítico em tempo real contendo: quantidade total de usuários cadastrados, total de perguntas no banco de dados e volume total de perguntas já respondidas pela comunidade.
+
+* **RF26 \- Gestão de Conteúdo:** O administrador deve conseguir criar novas perguntas, visualizar a lista completa do banco de dados, editar perguntas existentes (corrigir erros de digitação ou alterar gabaritos) e inativar perguntas para que deixem de aparecer no jogo.
+
+* **RF27 \- Monitoramento de Desempenho do Quiz:** O sistema deve fornecer relatórios sobre o engajamento das perguntas, destacando estatísticas como as taxas de acerto e erro, permitindo identificar as perguntas "mais fáceis" e as "mais difíceis" da base.
+
+* **RF28 \- Caixa de Entrada de Reports:** O painel deve possuir uma área dedicada para listar as denúncias feitas pelos jogadores, permitindo ao administrador avaliar a queixa, corrigir a pergunta diretamente e marcar o report como "Resolvido".
 
 **4\. Regras de Negócio (RN)**
 
@@ -239,19 +259,15 @@ Especificação técnica de como programar as ajudas no Frontend/Backend:
 **Collection: questions**
 {
   "_id": "ObjectId(...)",
-  "theme": "String (ex: 'series')",
-  "subTheme": "String (ex: 'Game of Thrones')",
-  "difficulty": "String (easy, medium, hard)",
-  "text": "String (Enunciado)",
-  "options": [
-    { "id": 1, "text": "String" },
-    { "id": 2, "text": "String" },
-    { "id": 3, "text": "String" },
-    { "id": 4, "text": "String" }
-  ],
-  "correctOptionId": "Number (1-4)"
+  "pergunta": "String",
+  "alternativas": ["Array de 4 Strings"],
+  "resposta_correta": "String",
+  "categoria": "String (Série/Filme)",
+  "tema": "String (Franquia específica)",
+  "dificuldade": "String",
+  "curiosidade": "String",
+  "estatisticas_escolhas": ["Array de 4 Numbers"]
 }
-
 
 **Data:** 30/01/2026
 
