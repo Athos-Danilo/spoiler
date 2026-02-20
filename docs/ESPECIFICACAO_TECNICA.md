@@ -116,6 +116,16 @@ Abaixo, detalhamos as escolhas arquiteturais e o "porquê" de cada decisão.
 
 * **RF28 \- Caixa de Entrada de Reports:** O painel deve possuir uma área dedicada para listar as denúncias feitas pelos jogadores, permitindo ao administrador avaliar a queixa, corrigir a pergunta diretamente e marcar o report como "Resolvido".
 
+* **RF29 \- Múltiplos Modos de Cadastro:** O painel administrativo deve oferecer duas interfaces distintas para a criação de perguntas: o "Modo Estruturado" (formulário tradicional campo a campo e estilizado com a mesma estrutura das perguntas) e o "Modo Smart Import" (caixa de texto livre para importação em lote).
+
+* **RF30 \- Parser de Texto Inteligente:** No "Modo Smart Import", o sistema (Frontend) deve ser capaz de ler um bloco de texto bruto contendo múltiplas perguntas e fatiá-lo utilizando um delimitador padrão definido pelo sistema (exemplo: // ou ---), extraindo automaticamente o enunciado, as alternativas e a resposta correta de cada bloco.
+
+* **RF31 \- Tela de Preview e Validação:** Após o processamento do texto bruto no Modo Smart Import, o sistema não deve salvar os dados imediatamente. Ele deve renderizar uma tabela de Preview mostrando ao administrador exatamente como o sistema interpretou cada pergunta, apontando possíveis erros de formatação (ex: uma pergunta que ficou com apenas 3 alternativas).
+
+* **RF32 \- CEdição Rápida no Preview:** Na tela de Preview, o administrador deve ter a capacidade de fazer pequenas edições diretamente nas células da tabela (caso o Parser tenha lido alguma palavra errada) antes de confirmar o envio. 
+
+* **RF33 \- Inserção em Massa:** O Backend deve possuir uma rota específica capaz de receber um Array contendo múltiplos objetos de perguntas validadas e salvá-las no banco de dados em uma única operação de alta performance.
+
 **4\. Regras de Negócio (RN)**
 
 *As leis e lógicas matemáticas que governam o comportamento do sistema.*
