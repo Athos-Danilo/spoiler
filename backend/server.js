@@ -7,6 +7,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const conn = require('./src/database/conn');
 const authRoutes = require('./src/routes/authRoutes');
+const questionRoutes = require('./src/routes/questionRoutes');
 
 // Inicializa o aplicativo Express.
 const app = express();
@@ -28,12 +29,15 @@ conn();
 // ======> Mapeamento de Rotas.
 // 1) Rota de teste na raiz '/' para verificar se a API está de pé;
 // 2) Direcionar todas as rotas que começam com '/auth' para o authRoutes.
+// 3) Direcionar todas as rotas que começam com '/questoes' para o questionRoutes.
 // -------------------------------------------------------------------------- //
 app.get('/', (req, res) => {
     res.send('API do Spoiler está Online e Roteando!');
 });
 
 app.use('/auth', authRoutes);
+
+app.use('/questoes', questionRoutes);
 
 // ======> Inicialização do Servidor.
 // 1) Define a porta usando o .env;
