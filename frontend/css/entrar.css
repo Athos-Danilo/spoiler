@@ -474,15 +474,15 @@ a:hover {
 
     /*---------- Esqueci Minha Senha ----------*/
     a {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     /*---------- Criar Conta ----------*/
     .criar-conta p {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .criar-conta a {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 }
