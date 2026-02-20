@@ -1,7 +1,13 @@
+// Biblioteca responsável por interagir com o MongoDB.
 const mongoose = require("mongoose");
-
 const { Schema } = mongoose;
 
+// ======> Modelo de Dados do Usuário (Schema).
+// 1) Campos obrigatórios e únicos (nickname, e-mail e senha);
+// 2) Valor padrão para avatar e estatísticas iniciais;
+// 3) Criar a relação (ref) com a tabela de Questões para o histórico;
+// 4) Ativar timestamps para registrar automaticamente quando a conta foi criada/atualizada.
+// -------------------------------------------------------------------------------------------- //
 const usuario = new Schema(
   {
     nickname: {
@@ -20,7 +26,7 @@ const usuario = new Schema(
     },
     avatar: {
       type: String,
-      default: "default-avatar.png", 
+      default: "claquete.png", 
     },
     estatisticas: {
       total_pontos: {
@@ -44,6 +50,7 @@ const usuario = new Schema(
   { timestamps: true } 
 );
 
+// Compila o Schema em um Model funcional e o exporta.
 const User = mongoose.model("User", usuario);
 
 module.exports = User;
