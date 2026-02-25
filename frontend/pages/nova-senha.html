@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Senha | Spoiler</title>
+    <link rel="stylesheet" href="../css/nova-senha.css">
+    <link rel="stylesheet" href="../css/toast.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <main class="telas">
+
+        <div class="container-verificar">
+
+            <div class="conteudo-verificar">
+
+                <div class="logo">
+                    <h1>Spoiler</h1>
+                    <h3>Quiz de Filmes & Séries</h3>
+                </div>
+
+                <form class="verificar" id="formVerificar">
+                    <h2>Verifique seu E-mail</h2>
+                    <p>Enviamos um código de 6 dígitos para o seu e-mail. Digite-o abaixo para criar uma nova senha.</p>
+                    <div class="numeros">
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                        <input type="text" class="caixa-token" maxlength="1" inputmode="numeric" required>
+                    </div>
+                    <button type="submit" id="verificarCodigo" class="btn-verificar">Verificar Código</button>
+                    <button type="button" id="reenviarCodigo" class="btn-reenviar">Reenviar Código</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="container-senha" style="display: none;">
+            
+            <div class="conteudo-senha">
+            
+                <div class="logo">
+                    <h1>Spoiler</h1>
+                    <h3>Quiz de Filmes & Séries</h3>
+                </div>
+
+                <form class="criar-nova-senha" id="formNovaSenha">
+                    <h2>Criar Nova Senha</h2>
+
+                    <div class="inputs">
+                        <img src="../img/icone-cadeado.png" class="icone-input-cadeado" alt="Ícone de Cadeado">
+                        <input type="password" id="senha" placeholder="Senha" name="senha" required>
+                        <img src="../img/icone-olho-fechado.png" id="olhoSenha" class="icone-ver-senha" alt="Ver Senha">
+                    </div>
+
+                    <div class="inputs">
+                        <img src="../img/icone-cadeado.png" class="icone-input-cadeado" alt="Ícone de Cadeado">
+                        <input type="password" id="confirmarSenha" placeholder="Confirmar Senha" name="confirmarSenha" required>
+                        <img src="../img/icone-olho-fechado.png" id="olhoConfirmar" class="icone-ver-senha" alt="Ver Senha">
+                    </div>
+
+                    <p>A senha deve ter pelo menos 6 caracteres</p>
+
+                    <button type="submit" id="salvarSenha" class="btn-salvar-senha">Salvar e Entrar no Jogo</button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/toast.js"></script>
+    <script src="../js/nova-senha.js"></script>
+</body>
+</html>
