@@ -220,6 +220,7 @@ button:active {
         box-shadow: none;
         padding: 0;
         margin: 0;   
+        overflow: visible;
     }
 
     /*---------- Card ----------*/
@@ -251,7 +252,7 @@ button:active {
 @media (min-width: 1400px) {
     /*---------- Card ----------*/
     .conteudo {
-        width: 55%;  
+        width: 35%;  
     }
 
     h2 {
@@ -263,6 +264,6 @@ button:active {
         font-size: 1.2rem; 
         font-weight: 350;
         margin-bottom: 30px;
-        padding: 0px 30px;
+        padding: 0px 15px;
     }
 }
