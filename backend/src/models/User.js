@@ -28,6 +28,14 @@ const usuario = new Schema(
       type: String,
       default: "claquete.png", 
     },
+    resetSenhaToken: {
+      type: String,
+      default: null, 
+    },
+    resetSenhaTempo: {
+      type: Date, 
+      default: null,
+    },
     estatisticas: {
       total_pontos: {
         type: Number,
