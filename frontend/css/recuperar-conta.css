@@ -187,6 +187,7 @@ button:active {
 .formulario a {
     margin-top: 25px;
     text-align: center;
+    text-decoration: none;
     padding: 10px 20px;
     border-radius: 50px; 
     border: solid 2px var(--cor-azul); 
