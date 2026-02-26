@@ -7,6 +7,7 @@ const containerSenha = document.querySelector('.container-senha');
 // 2) Formulários e Botões.
 const formVerificar = document.getElementById('formVerificar');
 const btnVerificar = document.getElementById('verificarCodigo');
+const btnReenviar = document.getElementById('reenviarCodigo'); 
 const formNovaSenha = document.querySelector('.criar-nova-senha');
 const btnSalvarSenha = document.getElementById('salvarSenha');
 
@@ -36,10 +37,10 @@ caixasToken.forEach((caixa, index) => {
 });
 
 
-// ======> Verificar o Código de 6 Dígitos.
+// ======> 1. Verificar o Código de 6 Dígitos.
 // 1) Impedir recarregamento da página;
 // 2) Juntar os 6 números em uma única string "Token";
-// 3) Simular o envio para a API para validar o Token;
+// 3) Enviar para a API para validar o Token;
 // 4) Se sucesso: Esconder Parte 1 e Mostrar Parte 2.
 // --------------------------------------------------------------------- //
 
@@ -54,7 +55,7 @@ formVerificar.addEventListener('submit', async (event) => {
 
     // Validação básica do Front
     if (tokenDigitado.length < 6) {
-        mostrarToast("Por favor, preencha os 6 dígitos do código."); 
+        mostrarToast("error", "Por favor, preencha os 6 dígitos do código."); 
         return;
     }
 
@@ -64,29 +65,30 @@ formVerificar.addEventListener('submit', async (event) => {
     btnVerificar.disabled = true;
 
     try {
-        // Resgata o e-mail que salvamos na tela anterior!
+        // Resgata o e-mail que salvamos na tela anterior.
         const emailSalvo = sessionStorage.getItem('emailRecuperacao');
 
-        // =========================================================
-        // 🚀 AQUI VAI O FETCH PARA A SUA API NO FUTURO
-        // Ex: fetch('/api/auth/validar-token', { body: JSON.stringify({ email: emailSalvo, token: tokenDigitado }) })
-        // =========================================================
+        const response = await fetch('http://localhost:3000/auth/validar-token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailSalvo, token: tokenDigitado })
+        });
 
-        // 🧪 SIMULAÇÃO DE CARREGAMENTO (Remova depois)
-        await new Promise(resolve => setTimeout(resolve, 1000)); 
+        const data = await response.json();
 
-        // 🎇 A MÁGICA DA TROCA DE TELAS ACONTECE AQUI!
-        // Some com a tela de código...
+        if (!response.ok) {
+            throw new Error(data.msg || 'Código inválido ou expirado.');
+        }
+
+        // Troca de Telas. 
         containerVerificar.style.display = 'none';
-        
-        // ...E faz a tela de nova senha aparecer suavemente! (Usamos 'flex' porque seu container é flexbox)
         containerSenha.style.display = 'flex';
         
-        mostrarToast("Código validado! Crie sua nova senha."); 
+        mostrarToast('success', "Código validado! Crie sua nova senha.");
 
     } catch (error) {
         console.error("[Erro - Verificar Token]:", error);
-        mostrarToast("Código inválido ou expirado."); 
+        mostrarToast('error', error.message);
     } finally {
         btnVerificar.innerText = textoOriginal;
         btnVerificar.disabled = false;
@@ -94,9 +96,74 @@ formVerificar.addEventListener('submit', async (event) => {
 });
 
 
-// ======> 2. Mostrar/Esconder Senha.
+// ======> 2. Reenviar o Código de Segurança.
+// 1) Captura o clique no botão de reenviar;
+// 2) Resgata o e-mail do sessionStorage;
+// 3) Chama a rota de recuperação para gerar um novo código;
+// 4) Bloqueia o botão por 60 segundos.
+// ---------------------------------------------------------------- //
+
+btnReenviar.addEventListener('click', async (event) => {
+    event.preventDefault(); 
+
+    const emailSalvo = sessionStorage.getItem('emailRecuperacao');
+
+    if (!emailSalvo) {
+        mostrarToast('error', 'E-mail não encontrado. Por favor, volte ao início.');
+        return;
+    }
+
+    // Feedback visual de carregamento no botão
+    const textoOriginal = btnReenviar.innerText;
+    btnReenviar.innerText = 'Enviando...';
+    btnReenviar.style.pointerEvents = 'none'; 
+    btnReenviar.style.opacity = '0.5';
+
+    try {
+        const response = await fetch('http://localhost:3000/auth/recuperar-conta', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailSalvo })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.msg || 'Erro ao tentar reenviar o e-mail.');
+        }
+
+        mostrarToast('success', 'Novo código enviado! Verifique sua caixa de entrada.');
+
+        let tempoRestante = 60;
+        btnReenviar.innerText = `Aguarde ${tempoRestante}s`;
+        
+        const temporizador = setInterval(() => {
+            tempoRestante--;
+            btnReenviar.innerText = `Aguarde ${tempoRestante}s`;
+            
+            if (tempoRestante <= 0) {
+                clearInterval(temporizador);
+                btnReenviar.innerText = textoOriginal;
+                btnReenviar.style.pointerEvents = 'auto';
+                btnReenviar.style.opacity = '1';
+            }
+        }, 1000);
+
+    } catch (error) {
+        console.error("[Erro - Reenviar Código]:", error);
+        mostrarToast('error', error.message);
+        
+        // Se der erro, libera o botão imediatamente para ele tentar de novo.
+        btnReenviar.innerText = textoOriginal;
+        btnReenviar.style.pointerEvents = 'auto';
+        btnReenviar.style.opacity = '1';
+    }
+});
+
+
+// ======> 3. Mostrar/Esconder Senha.
 // 1) Função para trocar o type do input (password <-> text);
-// 2) Mudar a ícone.
+// 2) Mudar o ícone.
 // ---------------------------------------------------------------- //
 function alternarVisibilidade(input, icone) {
     if (input.type === 'password') {
@@ -117,7 +184,7 @@ olhoConfirmar.addEventListener('click', () => {
 });
 
 
-// ======> 3. Salvar a Nova Senha
+// ======> 4. Salvar a Nova Senha
 // 1) Valida se tem no mínimo 6 caracteres;
 // 2) Valida se a "Nova Senha" é igual a "Confirmar Senha";
 // 3) Envia para a API atualizar no banco de dados;
@@ -130,12 +197,12 @@ formNovaSenha.addEventListener('submit', async (event) => {
     const confirmacao = inputConfirmar.value;
 
     if (novaSenha.length < 6) {
-        mostrarToast("A senha deve ter pelo menos 6 caracteres."); 
+        mostrarToast("error", "A senha deve ter pelo menos 6 caracteres."); 
         return;
     }
 
     if (novaSenha !== confirmacao) {
-        mostrarToast("As senhas não conferem. Digite novamente."); 
+        mostrarToast("error", "As senhas não conferem. Digite novamente."); 
         return;
     }
 
@@ -146,25 +213,30 @@ formNovaSenha.addEventListener('submit', async (event) => {
     try {
         const emailSalvo = sessionStorage.getItem('emailRecuperacao');
 
-        // =========================================================
-        // 🚀 AQUI VAI O FETCH PARA A SUA API NO FUTURO
-        // Ex: fetch('/api/auth/resetar-senha', { body: JSON.stringify({ email: emailSalvo, novaSenha }) })
-        // =========================================================
+        const response = await fetch('http://localhost:3000/auth/resetar-senha', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailSalvo, novaSenha: novaSenha })
+        });
 
-        // 🧪 SIMULAÇÃO DE CARREGAMENTO (Remova depois)
-        await new Promise(resolve => setTimeout(resolve, 1500)); 
+        const data = await response.json();
 
-        // Limpa a mochila do navegador (segurança)
+        if (!response.ok) {
+            throw new Error(data.msg || 'Erro ao tentar salvar a senha.');
+        }
+
         sessionStorage.removeItem('emailRecuperacao');
 
-        mostrarToast("Senha alterada com sucesso! Faça login para jogar."); 
+        mostrarToast('success', "Senha alterada com sucesso! Faça login para jogar."); 
 
-        // Redireciona o jogador de volta para a tela de login
-        window.location.href = 'entrar.html'; 
+        // Aguarda o Toast aparecer antes de jogar pro Login.
+        setTimeout(() => {
+            window.location.href = 'entrar.html'; 
+        }, 2000);
 
     } catch (error) {
         console.error("[Erro - Salvar Nova Senha]:", error);
-        mostrarToast("Erro ao salvar a senha. Tente novamente."); // Toast de erro
+        mostrarToast("error", "Erro ao salvar a senha. Tente novamente.");
     } finally {
         btnSalvarSenha.innerText = textoOriginal;
         btnSalvarSenha.disabled = false;

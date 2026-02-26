@@ -31,11 +31,8 @@ formRecuperacao.addEventListener('submit', async (event) => {
     btnEnviar.style.opacity = '0.7';
 
     try {
-        // =========================================================
-        // 🚀 CÓDIGO DA FUTURA API (Descomente quando o backend estiver pronto)
-        // =========================================================
-        /*
-        const response = await fetch('http://localhost:3000/api/auth/recuperar-conta', {
+        // Dispara o e-mail.
+        const response = await fetch('http://localhost:3000/auth/recuperar-conta', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,22 +45,18 @@ formRecuperacao.addEventListener('submit', async (event) => {
         if (!response.ok) {
             throw new Error(data.msg || 'Erro ao tentar enviar o e-mail.');
         }
-        */
 
-        // =========================================================
-        // 🧪 SIMULAÇÃO PARA TESTE VISUAL (Remova depois)
-        // =========================================================
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Simula 1.5s de carregamento
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Simula 1.5s de carregamento.
 
-        // Salva o e-mail no sessionStorage. 
-        // Isso é crucial para a próxima tela saber qual e-mail estamos verificando!
+        // Salva o e-mail no sessionStorage para a próxima tela.
         sessionStorage.setItem('emailRecuperacao', emailValue);
-
 
         mostrarToast('success', 'Código enviado! Verifique sua caixa de entrada.');
         
-        // Redireciona o usuário para a tela da Parte 2
-        window.location.href = 'nova-senha.html';
+        // Aguarda um pouquinho pro usuário ler o Toast antes de mudar de tela.
+        setTimeout(() => {
+            window.location.href = 'nova-senha.html';
+        }, 1500); 
 
     } catch (error) {
         // Log do erro no console para debug.
