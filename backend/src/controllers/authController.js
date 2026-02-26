@@ -5,7 +5,10 @@ const bcrypt = require("bcryptjs");
 // Biblioteca para criar e verificar tokens JWT.
 const jwt = require("jsonwebtoken");
 
-// Biblioteca para enviar E-mail.
+// E-mail de Boas-Vindas.
+const enviarEmailBoasVindas = require("../services/sendWelcomeEmail");
+
+// E-mail de Recuperação.
 const enviarEmailRecuperacao = require("../services/sendEmail"); 
 
 
@@ -47,6 +50,10 @@ exports.register = async (req, res) => {
 
     // Salva o usuário no banco.
     await user.save();
+
+    // Dispara o e-mail de boas-vindas de forma assíncrona.
+    enviarEmailBoasVindas(user.email, user.nickname);
+
     res.status(201).json({ msg: "Usuário criado com sucesso!" });
 
   } catch (error) {
