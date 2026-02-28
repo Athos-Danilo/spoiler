@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tela Inicial | Spoiler</title>
+    <link rel="stylesheet" href="frontend/css/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="frontend/pages/entrar.html">Fazer Login</a>
-    <br>
-    <a href="frontend/pages/cadastrar.html">Criar Conta</a>
+    <main class="container">
+
+        <div class="background">
+            <img src="frontend/img/fundo-cinema.webp" alt="Background Cinema">
+            <video muted playsinline loop></video>
+        </div>
+
+        <div class="tela">
+
+            <div class="logo">
+                <h1>Spoiler</h1>
+                <h2>Quiz de Filmes & Séries</h2>
+            </div>
+
+            <p>O quiz definitivo para fãs de filmes e séries! Escolha o seu tema favorito, de grandes sagas aos sucessos da TV, use suas ajudas com estratégia e prove que o seu conhecimento vai muito além do roteiro.</p>
+
+            <button type="button" class="jogar" id="comecarJogar">Começar a Jogar</button>
+
+            <a href="frontend/pages/entrar.html" class="btn-entrar">Entrar</a>
+
+            <a href="frontend/pages/cadastrar.html" class="btn-cadastrar">Criar Conta</a>
+
+            <a href="#" class="btn-regrars-ajudas">Regras e Ajudas</a>
+
+            <footer>
+                <small>© 2026 Equipe Spoiler. Todos os direitos reservados.</small>
+            </footer>
+        </div>
+
+    </main>
+
+    <script src="frontend/js/index.js"></script>
 </body>
 </html>

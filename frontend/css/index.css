@@ -1,0 +1,245 @@
+/*---------- Resete ----------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*---------- Variáveis da Página ----------*/
+:root {
+    --cor-branco: #FFFFFF;
+    --cor-preto: #000000;
+    --cor-cinza: #888888;
+    --cor-cinza-claro: #B0B8C8;
+    --cor-cinza-mais-claro: #D9D9D9;
+    --cor-azul: #347CD4;
+    --cor-azul-0: #40506D;
+    --cor-azul-1: #274273;
+    --cor-azul-2: #1E3256;
+    --cor-azul-3: #192B4B;
+    --cor-azul-4: #182641;
+
+    --fonte-principal: 'Josefin Sans', sans-serif;
+    --fonte-secundaria: 'Jockey One', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #FFFFFF;
+    font-family: var(--fonte-principal);
+    overflow-x: hidden;
+}
+
+/* ======> Fundo com Vídeo e Película Escura */
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.background img,
+.background video { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* O Segredo do Fundo: Escuro em cima (pro texto brilhar) e quase transparente embaixo (pras poltronas aparecerem) */
+.background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 2;
+}
+
+/* ======> Tela Principal */
+.tela {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 400px; 
+}
+
+/* ======> Logo Neon Animada */
+.logo {
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    font-family: var(--fonte-principal);
+    font-style: italic;
+    font-size: 65px;
+    letter-spacing: 2px;
+    margin-bottom: -5px;
+    color: #FFFFFF;
+    animation: neon-piscar 2.5s infinite alternate;
+}
+
+.logo h2 {
+    font-weight: 600; /* Um pouquinho mais grosso no Figma */
+    font-style: italic;
+    font-size: 16px;
+    color: var(--cor-branco);
+    letter-spacing: 1px;
+}
+
+/* Brilho reduzido e mais sutil, igual ao Figma */
+@keyframes neon-piscar {
+    0%, 100% { text-shadow: 0 0 4px rgba(138, 230, 255, 0.4), 0 0 8px rgba(52, 124, 212, 0.4); }
+    50% { text-shadow: 0 0 8px rgba(138, 230, 255, 0.8), 0 0 15px rgba(52, 124, 212, 0.8); }
+}
+
+/* ======> Texto Descritivo */
+.tela p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--cor-cinza-mais-claro);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* ======> 🏆 O Novo Botão Principal (Efeito Brilho Shimmer) */
+.jogar {
+    position: relative;
+    font-family: var(--fonte-principal);
+    font-style: italic; /* Mantendo o itálico elegante do Figma */
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    
+    /* Azul vivo e plano, sem degradê pesado de volume */
+    background-color: #3e8eed; 
+    
+    padding: 16px 40px;
+    border-radius: 10px; /* Bem arredondado, combinando com os de baixo */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 45px;
+    width: 100%;
+    
+    /* Brilho Neon Azul ao redor do botão (Glow) */
+    box-shadow: 0 0 15px rgba(62, 142, 237, 0.6), 0 0 30px rgba(62, 142, 237, 0.4);
+    
+    /* Prepara para o efeito de brilho interno */
+    overflow: hidden; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 🟢 O Efeito de Movimento: A Onda de Brilho (Shimmer) */
+.jogar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Começa bem fora da tela à esquerda */
+    width: 100%;
+    height: 100%;
+    
+    /* Uma faixa diagonal de luz branca/ciano semi-transparente */
+    background: linear-gradient(
+        120deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0) 40%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(138, 230, 255, 0.3) 55%, 
+        rgba(255, 255, 255, 0) 60%, 
+        transparent 100%
+    );
+    
+    /* Inclina a faixa de luz */
+    transform: skewX(-20deg); 
+    
+    /* Animação infinita da onda passando */
+    animation: onda-brilho 3s infinite;
+}
+
+/* Animação que faz a onda atravessar o botão */
+@keyframes onda-brilho {
+    0% { left: -150%; }
+    30%, 100% { left: 150%; } /* Passa rápido e espera um pouco antes de voltar */
+}
+
+/* Efeito sutil ao tocar/clicar (ele dá uma leve "pulsada" e aumenta o brilho) */
+.jogar:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 25px rgba(62, 142, 237, 0.9), 0 0 45px rgba(138, 230, 255, 0.6);
+}
+
+
+/* ======> Botões Secundários (Transparentes igual ao Figma) */
+.btn-entrar,
+.btn-cadastrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 180px; /* Largura mais compacta */
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 30px;
+    margin-bottom: 25px;
+    border-radius: 30px; /* Bem arredondado */
+    
+    background-color: rgba(24, 38, 65, 0.5);
+    border: 1.5px solid var(--cor-azul); /* Borda azul nítida */
+    transition: all 0.3s ease;
+}
+
+.btn-regrars-ajudas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 180px; /* Largura mais compacta */
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 30px;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    border-radius: 30px; /* Bem arredondado */
+    
+    background-color: var(--cor-azul-4); /* Totalmente transparente */
+    border: none; /* Borda azul nítida */
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse ou tocar */
+.btn-entrar:hover,
+.btn-cadastrar:hover,
+.btn-regrars-ajudas:hover {
+    background-color: rgba(52, 124, 212, 0.15);
+    transform: scale(1.02);
+}
+
+/* ======> Rodapé */
+footer {
+    margin-top: 20px;
+}
+
+footer small {
+    font-size: 11px;
+    color: var(--cor-cinza);
+}
