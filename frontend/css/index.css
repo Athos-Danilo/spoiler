@@ -25,16 +25,17 @@
 
 body {
     background-color: #000;
-    color: #FFFFFF;
+    color: var(--cor-branco);
     font-family: var(--fonte-principal);
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100dvh;
 }
 
 /*---------- Background ----------*/
 .container {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
