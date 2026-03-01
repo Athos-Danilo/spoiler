@@ -30,7 +30,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ======> Fundo com Vídeo e Película Escura */
+/*---------- Background com Vídeo ----------*/
 .container {
     position: relative;
     width: 100%;
@@ -59,7 +59,7 @@ body {
     transition: opacity 0.8s ease;
 }
 
-/* O Segredo do Fundo: Escuro em cima (pro texto brilhar) e quase transparente embaixo (pras poltronas aparecerem) */
+/*---------- Fundo Escuro ----------*/
 .background::after {
     content: '';
     position: absolute;
@@ -68,7 +68,7 @@ body {
     z-index: 2;
 }
 
-/* ======> Tela Principal */
+/*---------- Conteúdo da Tela ----------*/
 .tela {
     position: relative;
     z-index: 3;
@@ -81,165 +81,218 @@ body {
     max-width: 400px; 
 }
 
-/* ======> Logo Neon Animada */
+/*---------- Logo ----------*/
 .logo {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .logo h1 {
     font-family: var(--fonte-principal);
     font-style: italic;
-    font-size: 65px;
+    font-size: 4rem;
     letter-spacing: 2px;
-    margin-bottom: -5px;
+    margin-bottom: 2px;
     color: #FFFFFF;
     animation: neon-piscar 2.5s infinite alternate;
 }
 
 .logo h2 {
-    font-weight: 600; /* Um pouquinho mais grosso no Figma */
+    font-weight: 600; 
     font-style: italic;
-    font-size: 16px;
+    font-size: 1.2rem;
     color: var(--cor-branco);
     letter-spacing: 1px;
 }
 
-/* Brilho reduzido e mais sutil, igual ao Figma */
 @keyframes neon-piscar {
     0%, 100% { text-shadow: 0 0 4px rgba(138, 230, 255, 0.4), 0 0 8px rgba(52, 124, 212, 0.4); }
     50% { text-shadow: 0 0 8px rgba(138, 230, 255, 0.8), 0 0 15px rgba(52, 124, 212, 0.8); }
 }
 
-/* ======> Texto Descritivo */
+/*---------- Texto ----------*/
 .tela p {
     font-size: 16px;
-    line-height: 1.6;
-    color: var(--cor-cinza-mais-claro);
+    line-height: 1.5;
+    color: var(--cor-branco);
     margin-bottom: 40px;
+    padding: 0 15px;
     font-weight: 400;
 }
 
-/* ======> 🏆 O Novo Botão Principal (Efeito Brilho Shimmer) */
-.jogar {
+/*---------- Botão Principal (Começar a Jogar) ----------*/
+.btn-jogar {
     position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 50px;
     font-family: var(--fonte-principal);
-    font-style: italic; /* Mantendo o itálico elegante do Figma */
     font-weight: 700;
-    font-size: 26px;
-    letter-spacing: 1px;
-    color: #FFFFFF;
-    
-    /* Azul vivo e plano, sem degradê pesado de volume */
-    background-color: #3e8eed; 
-    
-    padding: 16px 40px;
-    border-radius: 10px; /* Bem arredondado, combinando com os de baixo */
-    border: none;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: #fff;
     cursor: pointer;
-    margin-bottom: 45px;
-    width: 100%;
-    
-    /* Brilho Neon Azul ao redor do botão (Glow) */
-    box-shadow: 0 0 15px rgba(62, 142, 237, 0.6), 0 0 30px rgba(62, 142, 237, 0.4);
-    
-    /* Prepara para o efeito de brilho interno */
-    overflow: hidden; 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1.5px solid rgba(160, 210, 255, 0.45);
+    border-radius: 8px;
+    outline: none;
+    overflow: hidden;
+    user-select: none;
+
+    background: linear-gradient(
+    to bottom,
+    #5ba8e8 0%,
+    #347CD4 40%,
+    #2060b8 100%
+    );
+
+    box-shadow:
+    0 0 0 2px #0f3a80,
+    0 6px 0 0 #0d2e6e,
+    0 8px 10px rgba(0,0,0,0.5),
+    inset 0 0 20px 6px rgba(80, 200, 255, 0.6);
+
+    text-shadow: 1px 1px 4px rgba(0, 0, 80, 0.5);
+    letter-spacing: 1px;
+    transition: box-shadow 0.08s, transform 0.08s, filter 0.08s;
+
+    animation: neon-run 2s linear infinite;
 }
 
-/* 🟢 O Efeito de Movimento: A Onda de Brilho (Shimmer) */
-.jogar::after {
+@keyframes neon-run {
+    0%   { box-shadow: 0 0 0 2px #0f3a80, 0 6px 0 0 #0d2e6e, 0 8px 10px rgba(0,0,0,0.5), inset 18px 0 28px -4px rgba(80,220,255,0.95), inset 0 0 8px rgba(80,220,255,0.2); }
+    25%  { box-shadow: 0 0 0 2px #0f3a80, 0 6px 0 0 #0d2e6e, 0 8px 10px rgba(0,0,0,0.5), inset 0 18px 28px -4px rgba(80,220,255,0.95), inset 0 0 8px rgba(80,220,255,0.2); }
+    50%  { box-shadow: 0 0 0 2px #0f3a80, 0 6px 0 0 #0d2e6e, 0 8px 10px rgba(0,0,0,0.5), inset -18px 0 28px -4px rgba(80,220,255,0.95), inset 0 0 8px rgba(80,220,255,0.2); }
+    75%  { box-shadow: 0 0 0 2px #0f3a80, 0 6px 0 0 #0d2e6e, 0 8px 10px rgba(0,0,0,0.5), inset 0 -18px 28px -4px rgba(80,220,255,0.95), inset 0 0 8px rgba(80,220,255,0.2); }
+    100% { box-shadow: 0 0 0 2px #0f3a80, 0 6px 0 0 #0d2e6e, 0 8px 10px rgba(0,0,0,0.5), inset 18px 0 28px -4px rgba(80,220,255,0.95), inset 0 0 8px rgba(80,220,255,0.2); }
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.btn-jogar::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -150%; /* Começa bem fora da tela à esquerda */
-    width: 100%;
-    height: 100%;
-    
-    /* Uma faixa diagonal de luz branca/ciano semi-transparente */
-    background: linear-gradient(
-        120deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0) 40%, 
-        rgba(255, 255, 255, 0.6) 50%, 
-        rgba(138, 230, 255, 0.3) 55%, 
-        rgba(255, 255, 255, 0) 60%, 
-        transparent 100%
+    inset: -3px;
+    border-radius: 10px;
+    background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0%,
+    transparent 60%,
+    rgba(80, 200, 255, 0.4) 70%,
+    rgba(140, 230, 255, 1) 80%,
+    rgba(220, 245, 255, 1) 85%,
+    rgba(140, 230, 255, 1) 90%,
+    rgba(80, 200, 255, 0.4) 95%,
+    transparent 100%
     );
-    
-    /* Inclina a faixa de luz */
-    transform: skewX(-20deg); 
-    
-    /* Animação infinita da onda passando */
-    animation: onda-brilho 3s infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 3px;
+    animation: spin-angle 2s linear infinite;
+    pointer-events: none;
+    filter: blur(1px);
 }
 
-/* Animação que faz a onda atravessar o botão */
-@keyframes onda-brilho {
-    0% { left: -150%; }
-    30%, 100% { left: 150%; } /* Passa rápido e espera um pouco antes de voltar */
+/*--- halo externo que acompanha o ponto de luz ---*/
+.btn-jogar::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 12px;
+    background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0%,
+    transparent 75%,
+    rgba(80, 200, 255, 0.15) 80%,
+    rgba(140, 230, 255, 0.5) 85%,
+    rgba(80, 200, 255, 0.15) 90%,
+    transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 6px;
+    animation: spin-angle 2s linear infinite;
+    pointer-events: none;
+    filter: blur(4px);
 }
 
-/* Efeito sutil ao tocar/clicar (ele dá uma leve "pulsada" e aumenta o brilho) */
-.jogar:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 25px rgba(62, 142, 237, 0.9), 0 0 45px rgba(138, 230, 255, 0.6);
+@keyframes spin-angle {
+    to { --angle: 360deg; }
 }
 
+.btn-jogar:hover {
+    filter: brightness(1.1);
+}
 
-/* ======> Botões Secundários (Transparentes igual ao Figma) */
+.btn-jogar:active {
+    transform: translateY(6px);
+    box-shadow:
+    0 0 0 2px #0f3a80,
+    0 0px 0 0 #0d2e6e,
+    0 2px 6px rgba(0,0,0,0.4),
+    inset 0 0 14px 4px rgba(80, 210, 255, 0.5);
+    animation: none;
+}
+.btn-jogar:active::before,
+.btn-jogar:active::after {
+    animation: none;
+    opacity: 0;
+}
+
+/*---------- Botões Secundários (Entrar e Criar Conta) ----------*/
 .btn-entrar,
 .btn-cadastrar {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 180px; /* Largura mais compacta */
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 30px;
+    color: var(--cor-branco);
+    font-size: 1.125rem;
+    font-weight: 500;
+    padding: 7px 15px;
     margin-bottom: 25px;
-    border-radius: 30px; /* Bem arredondado */
-    
+    border-radius: 30px; 
     background-color: rgba(24, 38, 65, 0.5);
-    border: 1.5px solid var(--cor-azul); /* Borda azul nítida */
+    border: 2px solid var(--cor-azul); 
     transition: all 0.3s ease;
 }
 
-.btn-regrars-ajudas {
+/*---------- Botão Regras e Ajudas ----------*/
+.btn-regras-ajudas {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 180px; /* Largura mais compacta */
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 16px;
+    color: var(--cor-branco);
+    font-size: 1rem;
     font-weight: 600;
-    padding: 10px 30px;
-    margin-top: 45px;
-    margin-bottom: 15px;
-    border-radius: 30px; /* Bem arredondado */
-    
-    background-color: var(--cor-azul-4); /* Totalmente transparente */
-    border: none; /* Borda azul nítida */
+    padding: 10px 10px;
+    margin-top: 50px;
+    margin-bottom: 32px;
+    border-radius: 10px; 
+    background-color: rgba(24, 38, 65, 0.5); 
+    border: none; 
     transition: all 0.3s ease;
 }
 
-/* Efeito ao passar o mouse ou tocar */
 .btn-entrar:hover,
 .btn-cadastrar:hover,
-.btn-regrars-ajudas:hover {
-    background-color: rgba(52, 124, 212, 0.15);
-    transform: scale(1.02);
+.btn-regras-ajudas:hover {
+    background-color: rgba(131, 181, 241, 0.173);
+    transform: scale(1.04);
 }
 
-/* ======> Rodapé */
+/*---------- Rodapé ----------*/
 footer {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 footer small {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--cor-cinza);
+    font-weight: 300;
 }
