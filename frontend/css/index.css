@@ -83,7 +83,7 @@ body {
 
 /*---------- Logo ----------*/
 .logo {
-    margin-top: 140px;
+    margin-top: 125px;
     margin-bottom: 40px;
 }
 
@@ -257,7 +257,7 @@ body {
     padding: 7px 15px;
     margin-bottom: 25px;
     border-radius: 30px; 
-    background-color: rgba(24, 38, 65, 0.5);
+    background-color: rgba(24, 38, 65, 0.7);
     border: 2px solid var(--cor-azul); 
     transition: all 0.3s ease;
 }
@@ -272,8 +272,8 @@ body {
     font-size: 1rem;
     font-weight: 600;
     padding: 10px 10px;
-    margin-top: 50px;
-    margin-bottom: 32px;
+    margin-top: 25px;
+    margin-bottom: 20px;
     border-radius: 10px; 
     background-color: rgba(24, 38, 65, 0.5); 
     border: none; 
