@@ -5,56 +5,98 @@ document.addEventListener('DOMContentLoaded', () => {
     const blocoListas = document.getElementById('blocoListas');
     const blocoBriefing = document.getElementById('blocoBriefing');
 
-    // --- BOTÕES DE AÇÃO ---
+    // --- ELEMENTOS DE CONTROLE ---
+    const cardFilmes = document.getElementById('cardFilmes');
     const cardSeries = document.getElementById('cardSeries');
-    const btnQuizFriends = document.getElementById('btnQuizFriends');
+    const listaFilmes = document.getElementById('listaFilmes');
+    const listaSeries = document.getElementById('listaSeries');
+    const tituloLista = document.getElementById('tituloLista');
     
-    const btnVoltarCategorias = document.getElementById('btnVoltarCategorias'); // Volta pro Bloco 1
-    const btnVoltarLista = document.getElementById('btnVoltarLista'); // Volta pro Bloco 2
-    
-    const btnIniciarPartida = document.getElementById('btnIniciarPartida'); // O botão final
+    const btnVoltarCategorias = document.getElementById('btnVoltarCategorias');
+    const btnVoltarLista = document.getElementById('btnVoltarLista');
+    const btnIniciarPartida = document.getElementById('btnIniciarPartida');
+
+    // --- ELEMENTOS DO BRIEFING PARA MUDAR DINAMICAMENTE ---
+    const imgBriefing = document.querySelector('.banner-quiz img');
+    const tituloBriefing = document.querySelector('.titulo-briefing');
+    const sinopseBriefing = document.querySelector('.sinopse-quiz');
+
+    // --- VARIÁVEIS DE JOGO ---
+    let nivelEscolhido = 'facil';
+    let temaEscolhido = ''; 
+
+    // --- DADOS TEMPORÁRIOS DO BRIEFING (No futuro virá do banco) ---
+    const dadosBriefing = {
+        'friends': {
+            imagem: '../img/friends.jpg',
+            titulo: 'Friends',
+            sinopse: '"Aquele em que você testa seus conhecimentos". Relembre os melhores momentos no Central Perk e prove que você é o 7º membro do grupo!'
+        },
+        'exterminador': {
+            imagem: '../img/exterminador.jpg', // A foto que você salvou!
+            titulo: 'O Exterminador',
+            sinopse: '"I\'ll be back". Teste seus conhecimentos sobre a Skynet, viagens no tempo e a rebelião das máquinas. Você é a resistência!'
+        }
+    };
 
     // --- LÓGICA DE DIFICULDADE ---
     const botoesNivel = document.querySelectorAll('.btn-nivel');
-    let nivelEscolhido = 'facil'; // Guarda a escolha do jogador
-
-    // Função para gerenciar a seleção de dificuldade
     botoesNivel.forEach(botao => {
         botao.addEventListener('click', () => {
-            // Remove a classe 'selecionado' de todos
             botoesNivel.forEach(b => b.classList.remove('selecionado'));
-            // Adiciona no que foi clicado
             botao.classList.add('selecionado');
-            // Salva a escolha
             nivelEscolhido = botao.getAttribute('data-nivel');
         });
     });
 
     // --- FLUXO DE NAVEGAÇÃO ---
 
-    // 1. Clicou em SÉRIES -> Vai para a Lista
+    // 1. Clicou em FILMES
+    cardFilmes.addEventListener('click', () => {
+        abrirLista('Filmes', listaFilmes, listaSeries);
+    });
+
+    // 2. Clicou em SÉRIES
     cardSeries.addEventListener('click', () => {
+        abrirLista('Séries', listaSeries, listaFilmes);
+    });
+
+    function abrirLista(nomeCategoria, listaMostrar, listaEsconder) {
+        tituloLista.innerText = `Quizzes de ${nomeCategoria}`;
+        listaMostrar.classList.remove('tela-oculta');
+        listaEsconder.classList.add('tela-oculta');
+        
         blocoCategoria.classList.add('tela-oculta'); 
         blocoListas.classList.remove('tela-oculta'); 
-        blocoListas.classList.add('tela-Categoria'); // Reusa o layout flex
+        blocoListas.classList.add('tela-Categoria'); 
+    }
+
+    // 3. Clicou em ALGUM JOGO (Filme ou Série)
+    const botoesJogos = document.querySelectorAll('.btn-abrir-briefing');
+    botoesJogos.forEach(botao => {
+        botao.addEventListener('click', () => {
+            temaEscolhido = botao.getAttribute('data-tema'); // Pega 'friends' ou 'exterminador'
+            
+            // Injeta os dados na Sala de Briefing
+            imgBriefing.src = dadosBriefing[temaEscolhido].imagem;
+            tituloBriefing.innerText = dadosBriefing[temaEscolhido].titulo;
+            sinopseBriefing.innerText = dadosBriefing[temaEscolhido].sinopse;
+
+            // Troca a tela
+            blocoListas.classList.add('tela-oculta');
+            blocoListas.classList.remove('tela-Categoria');
+            blocoBriefing.classList.remove('tela-oculta');
+            blocoBriefing.classList.add('tela-Categoria');
+        });
     });
 
-    // 2. Clicou no FRIENDS -> Vai para a Sala de Briefing
-    btnQuizFriends.addEventListener('click', () => {
-        blocoListas.classList.add('tela-oculta');
-        blocoListas.classList.remove('tela-Categoria');
-        blocoBriefing.classList.remove('tela-oculta');
-        blocoBriefing.classList.add('tela-Categoria'); // Reusa o layout flex
-    });
-
-    // 3. Voltar da Lista para Categorias
+    // 4. Botões de Voltar
     btnVoltarCategorias.addEventListener('click', () => {
         blocoListas.classList.add('tela-oculta');
         blocoListas.classList.remove('tela-Categoria');
         blocoCategoria.classList.remove('tela-oculta'); 
     });
 
-    // 4. Voltar do Briefing para a Lista
     btnVoltarLista.addEventListener('click', () => {
         blocoBriefing.classList.add('tela-oculta');
         blocoBriefing.classList.remove('tela-Categoria');
@@ -62,13 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         blocoListas.classList.add('tela-Categoria');
     });
 
-    // 5. Clicou em INICIAR PARTIDA -> Foguete pra tela de jogo!
+    // 5. Clicou em INICIAR PARTIDA
     btnIniciarPartida.addEventListener('click', () => {
-        // Como estamos testando o MVP com o Friends, o tema fica fixo por enquanto.
-        // Quando deixarmos o Bloco 2 dinâmico, pegaremos esse valor do card clicado!
-        const temaEscolhido = 'friends'; 
-        
-        // Redireciona para a página do jogo passando o tema e o nível na URL
+        // Agora o 'temaEscolhido' é dinâmico, baseado no botão que ele clicou!
         window.location.href = `jogo.html?tema=${temaEscolhido}&dificuldade=${nivelEscolhido}`;
     });
 

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dificuldade = parametros.get('dificuldade') || 'facil'; // Se não vier, assume facil
 
             // 2. MONTAR A URL DA API DINAMICAMENTE
-            const urlApi = 'http://localhost:3000/questoes/todas?tema=Friends&dificuldade=Fácil'; 
+            const urlApi = `http://localhost:3000/questoes/todas?tema=${tema}&dificuldade=${dificuldade}`;
             
             const resposta = await fetch(urlApi);
             

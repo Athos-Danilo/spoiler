@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +21,11 @@
         <section id="blocoCategoria" class="tela-Categoria">
 
             <header class="header-quiz">
-
                 <a href="../../index.html" class="btn-voltar">
                     <img src="../img/voltar.png" alt="Botão de Voltar">
                 </a>
-
                 <span class="titulo-topo">NOVO JOGO</span>
                 <div class="espacador"></div>
-
             </header>
 
             <div class="chamada">
@@ -37,7 +34,6 @@
             </div>
 
             <div class="cards">
-
                 <div class="card-categoria" id="cardFilmes">
                     <div class="card-img">
                         <img src="../img/claquete.png" alt="Ícone Filmes">
@@ -59,7 +55,6 @@
                         <p>De sucessos da TV às gigantes do streaming. Prove que você é um mestre em gabaritar temporadas.</p>
                     </div>
                 </div>
-
             </div>
 
             <p class="dica-rodape">Toque em uma categoria para começar</p>
@@ -77,12 +72,19 @@
             </header>
 
             <div class="chamada">
-                <h1>Quizzes de Séries</h1>
+                <h1 id="tituloLista">Quizzes</h1> 
                 <h2>Escolha seu Desafio</h2>
             </div>
 
-            <div class="area-lista-quizzes">
-                <div class="card-item-quiz" id="btnQuizFriends">
+            <div class="area-lista-quizzes tela-oculta" id="listaFilmes">
+                <div class="card-item-quiz btn-abrir-briefing" data-tema="exterminador" data-tipo="Filmes">
+                    <img src="../img/exterminador.jpg" alt="Capa Exterminador" class="img-capa-quiz">
+                    <span class="titulo-item-quiz">Exterminador do Futuro</span>
+                </div>
+            </div>
+
+            <div class="area-lista-quizzes tela-oculta" id="listaSeries">
+                <div class="card-item-quiz btn-abrir-briefing" data-tema="friends" data-tipo="Séries">
                     <img src="../img/friends.jpg" alt="Capa Friends" class="img-capa-quiz">
                     <span class="titulo-item-quiz">Friends</span>
                 </div>
@@ -104,12 +106,12 @@
                 
                 <div class="banner-quiz">
                     <div class="pelicula-banner"></div>
-                    <img src="../img/friends.jpg" alt="Banner Friends">
-                    <h2 class="titulo-briefing">Friends</h2>
+                    <img src="../img/friends.jpg" alt="Banner Jogo">
+                    <h2 class="titulo-briefing">Carregando...</h2>
                 </div>
                 
                 <div class="conteudo-briefing">
-                    <p class="sinopse-quiz">"Aquele em que você testa seus conhecimentos". Relembre os melhores momentos no Central Perk e prove que você é o 7º membro do grupo!</p>
+                    <p class="sinopse-quiz">Carregando sinopse...</p>
                     
                     <h3 class="label-dificuldade">Selecione a Dificuldade:</h3>
                     
