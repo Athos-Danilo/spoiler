@@ -66,7 +66,76 @@
 
         </section>
 
-        <section id="blocoListas" class="tela-listas">
+        <section id="blocoListas" class="tela-oculta">
+
+            <header class="header-quiz">
+                <button type="button" id="btnVoltarCategorias" class="btn-voltar">
+                    <img src="../img/voltar.png" alt="Botão de Voltar">
+                </button>
+                <span class="titulo-topo">NOVO JOGO</span>
+                <div class="espacador"></div>
+            </header>
+
+            <div class="chamada">
+                <h1>Quizzes de Séries</h1>
+                <h2>Escolha seu Desafio</h2>
+            </div>
+
+            <div class="area-lista-quizzes">
+                <div class="card-item-quiz" id="btnQuizFriends">
+                    <img src="../img/friends.jpg" alt="Capa Friends" class="img-capa-quiz">
+                    <span class="titulo-item-quiz">Friends</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="blocoBriefing" class="tela-oculta">
+            
+            <header class="header-quiz">
+                <button type="button" id="btnVoltarLista" class="btn-voltar">
+                    <img src="../img/voltar.png" alt="Botão de Voltar">
+                </button>
+                <span class="titulo-topo">SALA DE ESPERA</span>
+                <div class="espacador"></div>
+            </header>
+
+            <div class="card-briefing">
+                
+                <div class="banner-quiz">
+                    <div class="pelicula-banner"></div>
+                    <img src="../img/friends.jpg" alt="Banner Friends">
+                    <h2 class="titulo-briefing">Friends</h2>
+                </div>
+                
+                <div class="conteudo-briefing">
+                    <p class="sinopse-quiz">"Aquele em que você testa seus conhecimentos". Relembre os melhores momentos no Central Perk e prove que você é o 7º membro do grupo!</p>
+                    
+                    <h3 class="label-dificuldade">Selecione a Dificuldade:</h3>
+                    
+                    <div class="opcoes-dificuldade">
+                        <div class="btn-nivel selecionado" data-nivel="facil">
+                            <span class="icone-nivel">☕</span>
+                            <h4>Fácil</h4>
+                            <small>5 Perguntas</small>
+                        </div>
+                        
+                        <div class="btn-nivel" data-nivel="medio">
+                            <span class="icone-nivel">🛋️</span>
+                            <h4>Médio</h4>
+                            <small>10 Perguntas</small>
+                        </div>
+                        
+                        <div class="btn-nivel" data-nivel="dificil">
+                            <span class="icone-nivel">🦃</span>
+                            <h4>Difícil</h4>
+                            <small>15 Perguntas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="btnIniciarPartida" class="btn-acao-final">INICIAR PARTIDA</button>
 
         </section>
 

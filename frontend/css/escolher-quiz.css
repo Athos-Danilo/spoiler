@@ -243,7 +243,205 @@ body::before {
     font-weight: 300;
 }
 
+
+
+
+
 /*---------- Bloco de Listas (Deixando preparado) ----------*/
-.tela-listas {
-    display: none; /* Mantém oculto por enquanto */
+/*---------- Bloco 2: Classes de Ocultar/Mostrar ----------*/
+.tela-oculta {
+    display: none !important;
+}
+
+/*---------- Área da Lista de Quizzes ----------*/
+.area-lista-quizzes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    flex: 1;
+}
+
+/* O Cartão Retangular do Quiz */
+.card-item-quiz {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(30, 50, 86, 0.9), rgba(24, 38, 65, 0.9));
+    border: 1.5px solid var(--cor-azul);
+    border-radius: 12px;
+    padding: 0; /* Tiramos o padding para a imagem colar na borda esquerda */
+    box-shadow: 0 0 10px rgba(52, 124, 212, 0.2);
+    cursor: pointer;
+    overflow: hidden; /* Corta as bordinhas da imagem se ela for quadrada */
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.card-item-quiz:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(52, 124, 212, 0.5);
+}
+
+.img-capa-quiz {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Faz a foto encaixar sem amassar */
+    border-right: 1.5px solid var(--cor-azul); /* Uma linhazinha separando a foto do texto */
+}
+
+.titulo-item-quiz {
+    font-family: var(--fonte-principal);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cor-branco);
+    padding-left: 20px;
+}
+
+
+
+
+
+/*==================================================
+  BLOCO 3: SALA DE BRIEFING 
+==================================================*/
+
+/* Cartão Central que guarda tudo */
+.card-briefing {
+    background: linear-gradient(135deg, rgba(24, 38, 65, 0.85), rgba(15, 23, 42, 0.95));
+    border: 1.5px solid var(--cor-azul);
+    border-radius: 20px;
+    overflow: hidden; /* Corta a imagem do banner para ficar redondinha em cima */
+    box-shadow: 0 0 20px rgba(52, 124, 212, 0.3);
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* O Banner (Foto do jogo) */
+.banner-quiz {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: flex-end; /* Joga o título para baixo */
+    padding: 15px 20px;
+}
+
+.banner-quiz img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.pelicula-banner {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 10%, rgba(15, 23, 42, 1) 100%);
+    z-index: 1;
+}
+
+.titulo-briefing {
+    position: relative;
+    z-index: 2;
+    font-family: var(--fonte-secundaria);
+    font-size: 2.8rem;
+    color: var(--cor-branco);
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+/* Área de Textos e Botões internos */
+.conteudo-briefing {
+    padding: 20px;
+}
+
+.sinopse-quiz {
+    font-size: 0.9rem;
+    color: var(--cor-cinza-mais-claro);
+    line-height: 1.5;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.label-dificuldade {
+    font-size: 0.85rem;
+    color: #5ba8e8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+/* Grade dos botões de Nível */
+.opcoes-dificuldade {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-nivel {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1.5px solid #274273;
+    border-radius: 12px;
+    padding: 12px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icone-nivel {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.btn-nivel h4 {
+    font-family: var(--fonte-principal);
+    color: var(--cor-branco);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.btn-nivel small {
+    color: var(--cor-cinza);
+    font-size: 0.65rem;
+    margin-top: 2px;
+}
+
+/* Estado de Dificuldade Selecionada */
+.btn-nivel.selecionado {
+    background: rgba(52, 124, 212, 0.2);
+    border-color: #8ae6ff;
+    box-shadow: 0 0 15px rgba(138, 230, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-nivel.selecionado h4, .btn-nivel.selecionado small {
+    color: #8ae6ff;
+}
+
+/* Botãozão de Iniciar Partida (Estilo Shimmer Plano) */
+.btn-acao-final {
+    width: 100%;
+    background-color: #347CD4;
+    color: #FFF;
+    font-family: var(--fonte-principal);
+    font-style: italic;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(52, 124, 212, 0.6);
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-acao-final:active {
+    transform: scale(0.96);
+    background-color: #2b66b1;
 }
