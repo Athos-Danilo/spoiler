@@ -64,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Clicou em INICIAR PARTIDA -> Foguete pra tela de jogo!
     btnIniciarPartida.addEventListener('click', () => {
-        // Mostra o Toast ou um alerta avisando que vai começar
-        alert(`Iniciando Friends no nível: ${nivelEscolhido.toUpperCase()}! Prepara o coração!`);
+        // Como estamos testando o MVP com o Friends, o tema fica fixo por enquanto.
+        // Quando deixarmos o Bloco 2 dinâmico, pegaremos esse valor do card clicado!
+        const temaEscolhido = 'friends'; 
         
-        // Em breve, o código real será algo tipo:
-        // window.location.href = `jogo.html?tema=friends&dificuldade=${nivelEscolhido}`;
+        // Redireciona para a página do jogo passando o tema e o nível na URL
+        window.location.href = `jogo.html?tema=${temaEscolhido}&dificuldade=${nivelEscolhido}`;
     });
 
 });

@@ -52,15 +52,42 @@ exports.createQuestion = async (req, res) => {
   }
 };
 
-// ======> Buscar Todas as Perguntas.
-// 1) Consultar o MongoDB;
-// 2) Retornar a lista em formato JSON para o frontend processar.
+// ======> Buscar Perguntas (Com Filtro Dinâmico).
+// 1) Ler os parâmetros enviados na URL (tema, dificuldade, etc);
+// 2) Montar um filtro dinâmico;
+// 3) Consultar o MongoDB usando esse filtro;
+// 4) Retornar a lista filtrada em formato JSON.
 // ----------------------------------------------------------------- //
 exports.getAllQuestions = async (req, res) => {
   try {
-    // O método .find() sem filtros traz absolutamente tudo da coleção.
-    const questions = await Question.find();
+    // Extrai o que o front-end mandou na URL (Query Params)
+    const { tema, dificuldade, categoria } = req.query;
+
+    // Monta o objeto de filtro vazio
+    const filtro = {};
+
+    // Se a URL enviou um tema, adiciona ao filtro (ignora maiúsculas/minúsculas se quiser, mas vamos manter exato por agora)
+    if (tema) {
+      filtro.tema = tema;
+    }
+    
+    // Se a URL enviou uma dificuldade, adiciona ao filtro
+    if (dificuldade) {
+      // Como no seu Schema o padrão é "Fácil" (com acento e maiúscula), 
+      // podemos precisar garantir que a string bata exatamente com o banco.
+      // Uma dica de ouro é padronizar no banco tudo minúsculo e sem acento no futuro!
+      filtro.dificuldade = dificuldade; 
+    }
+
+    if (categoria) {
+      filtro.categoria = categoria;
+    }
+
+    // O método .find(filtro) agora traz APENAS as perguntas que batem com o critério!
+    const questions = await Question.find(filtro);
+    
     res.status(200).json(questions);
+    
   } catch (error) {
     console.error("[Erro - getAllQuestions]:", error);
     res.status(500).json({ msg: "Erro ao buscar as perguntas no banco de dados!" });
