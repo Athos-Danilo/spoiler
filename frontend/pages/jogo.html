@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogando | Spoiler</title>
+    <link rel="stylesheet" href="../css/jogo.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        
+        <div class="background">
+            <img src="../img/background-cinema.webp" alt="Background Cinema">
+            <div class="pelicula-jogo"></div>
+        </div>
+
+        <section class="tela-jogo">
+            
+            <header class="header-jogo">
+                <div class="progresso">
+                    <span id="contadorPergunta">Pergunta 1/5</span>
+                </div>
+                <div class="score-board">
+                    Pontos: <span id="pontuacao">0</span>
+                </div>
+            </header>
+
+            <div class="area-pergunta">
+                <h2 id="textoPergunta">Carregando pergunta...</h2>
+            </div>
+
+            <div class="area-alternativas" id="areaAlternativas">
+                </div>
+
+            <div class="area-rodape">
+                <button type="button" id="btnProxima" class="btn-acao-final btn-oculto">PRÓXIMA PERGUNTA</button>
+            </div>
+
+        </section>
+
+        </section>
+
+        <section id="telaResultado" class="tela-oculta">
+            <div class="card-resultado">
+                
+                <h2 id="tituloResultado">Fim de Jogo!</h2>
+                
+                <div class="circulo-pontos">
+                    <span id="pontuacaoFinal">0</span>
+                    <small>Pontos</small>
+                </div>
+                
+                <p id="mensagemResultado">Carregando resultado...</p>
+
+                <div class="botoes-resultado">
+                    <button type="button" id="btnJogarNovamente" class="btn-secundario">JOGAR NOVAMENTE</button>
+                    <a href="escolher-quiz.html" class="btn-acao-final" style="text-decoration: none; display: inline-block;">VOLTAR AO MENU</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    
+    <script src="../js/jogo.js"></script>
+</body>
+</html>
