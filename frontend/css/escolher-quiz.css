@@ -445,3 +445,123 @@ body::before {
     transform: scale(0.96);
     background-color: #2b66b1;
 }
+
+/*==================================================
+  TELA MÉDIA: TABLETS E NOTEBOOKS (Min 900px)
+==================================================*/
+@media (min-width: 900px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px; 
+        height: 600px; /* Altura travada igual ao index */
+        border-radius: 20px;
+        box-shadow: 0px 0px 7px var(--cor-azul);
+        overflow: hidden; 
+    }
+
+    .tela-Categoria, 
+    #blocoListas.tela-Categoria, 
+    #blocoBriefing.tela-Categoria {
+        max-width: 1000px; 
+        background: transparent; 
+        border: none;
+        box-shadow: none;
+        padding: 30px 40px; /* Diminuímos o padding para dar respiro em cima e embaixo */
+        justify-content: flex-start; /* AGORA SIM! O conteúdo começa do topo e não esmaga */
+        align-items: center; 
+    }
+
+    /* Ajuste do Cabeçalho para não grudar no teto */
+    .header-quiz {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    /* Fontes levemente menores para caber nos 600px */
+    .chamada h1 {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .chamada h2 {
+        display: none; 
+    }
+
+    /* Deixando os cartões um pouquinho mais compactos */
+    .cards {
+        align-items: center; 
+        gap: 15px; /* Menos espaço entre os dois botões */
+        width: 100%;
+    }
+
+    .card-categoria {
+        width: 100%;
+        max-width: 380px; 
+        padding: 15px 15px; /* Menos preenchimento interno */
+    }
+
+    .card-img {
+        flex: 0 0 80px; /* Claquete/TV um pouquinho menores */
+    }
+
+    .card-texto h3 {
+        font-size: 1.8rem;
+    }
+
+    .card-texto p {
+        font-size: 0.8rem;
+    }
+
+    .dica-rodape {
+        margin-top: 15px;
+    }
+}
+
+/*==================================================
+  TELA GRANDE: MONITORES ULTRAWIDE E TVs (Min 1400px)
+==================================================*/
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+        height: 85dvh; /* Aqui a tela é gigante, tem muito espaço! */
+    }
+
+    .tela-Categoria, 
+    #blocoListas.tela-Categoria, 
+    #blocoBriefing.tela-Categoria {
+        padding: 50px 60px;
+        justify-content: center; /* Aqui podemos voltar a centralizar porque tem espaço de sobra */
+    }
+
+    .chamada h1 {
+        font-size: 3.5rem;
+        margin-bottom: 40px;
+    }
+
+    .cards {
+        gap: 25px;
+    }
+
+    .card-categoria {
+        max-width: 450px; 
+        padding: 20px 20px;
+    }
+
+    .card-img {
+        flex: 0 0 95px; 
+    }
+
+    .card-texto h3 {
+        font-size: 2.2rem;
+    }
+
+    .card-texto p {
+        font-size: 0.9rem;
+    }
+}
